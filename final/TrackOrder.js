@@ -1,9 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import NavBar from './NavBar';
+import { Linking } from 'react-native';
 
 const TrackOrder = ({ navigation }) => {
+  const handleCallRider = () => {
+    const phoneNumber = 'tel:(216)96094124'; // Replace with the rider's phone number
+    Linking.openURL(phoneNumber).catch((err) =>
+      console.error('Failed to open dialer', err)
+    );
+  };
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -42,14 +49,11 @@ const TrackOrder = ({ navigation }) => {
           colors={['#82CE2B', '#6DBE45']}
           style={styles.callButton}
         >
-          <TouchableOpacity onPress={() => navigation.navigate('CallRider')}>
+          <TouchableOpacity onPress={handleCallRider}>
             <Text style={styles.callText}>Call</Text>
           </TouchableOpacity>
         </LinearGradient>
       </View>
-
-      {/* Bottom Navigation Bar */}
-     
     </View>
   );
 };
@@ -60,7 +64,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#f9f9f9',
     padding: 20,
     paddingBottom: 80,
-    // Ensuring enough space for the NavBar
   },
   title: {
     fontSize: 26,
