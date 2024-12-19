@@ -62,7 +62,7 @@ const MenuScreen = () => {
             <LinearGradient
               colors={['#82CE2B', '#426816']} // Gradient colors for button
               style={styles.gradient}>
-              <Text style={styles.dashboardText}>Hotels/Restaurants Dashboard</Text>
+              <Text style={styles.dashboardText}>HRC Dashboard</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
