@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Importing main screens
+import Choose from './final/Choose';
 import Dashboard from './final/dashboard';
 import LoginScreen from './final/LoginScreen';
 import NotificationScreen from './final/NotificationScreen';
@@ -32,6 +33,14 @@ import EditProfile from './final/EditProfile'; // Path to your EditProfile.js
 
 // Importing the LogoutConfirmation screen
 import LogoutConfirmation from './final/logout';
+//importing the hotelmanager dashbord 
+import HotelDash from './hotelManager/HotelDash';
+import FoodWasteDetails from './hotelManager/FoodWasteDetails';
+import Shelf from './hotelManager/Shelf';
+import FullShelf from './hotelManager/FullShelf';
+import AddWaste from './hotelManager/AddWaste';
+import TrackFood from './hotelManager/TrackFood';
+import Notification2 from './hotelManager/Notification2';
 
 // Stack Navigator
 const Stack = createStackNavigator();
@@ -47,6 +56,7 @@ export default function App() {
       >
         {/* Main Screens */}
         <Stack.Screen name="Welcome" component={Welcome} />
+        <Stack.Screen name="Choose" component={Choose} />
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Signup" component={SignupScreen} />
         <Stack.Screen name="Dashboard" component={Dashboard} />
@@ -169,6 +179,87 @@ export default function App() {
             headerBackTitleVisible: true, // Show back button text
           }}
         />
+         {/* Hotel Manager Dashboard */}
+         <Stack.Screen 
+          name="HotelDash" 
+          component={HotelDash} 
+          options={{
+            title: 'Hotel Manager Dashboard',
+            headerShown: true, // Show header for Hotel Manager Dashboard
+            
+            headerTintColor: 'black',
+            
+          }}
+        />
+        {/* Food Waste Details */}
+        <Stack.Screen 
+          name="FoodWasteDetails" 
+          component={FoodWasteDetails} 
+          options={{
+            title: 'Food Waste Details',
+            headerShown: true,
+           
+            headerTintColor: 'black',
+            
+          }} 
+        />
+        <Stack.Screen 
+          name="Shelf" 
+          component={Shelf} 
+          options={{
+          title: 'Shelf',
+          headerShown: true, 
+         
+          headerTintColor: 'black',
+          
+          }} 
+        />
+        <Stack.Screen 
+          name="FullShelf" 
+          component={FullShelf} 
+          options={{
+          title: 'FullShelf',
+          headerShown: true, 
+          
+          headerTintColor: 'black',
+        
+          }} 
+        />
+         <Stack.Screen 
+          name="AddWaste" 
+          component={AddWaste} 
+          options={{
+          title: 'AddWaste',
+          headerShown: true, 
+         
+          headerTintColor: 'black',
+         
+          }} 
+        />
+         <Stack.Screen 
+          name="TrackFood" 
+          component={TrackFood} 
+          options={{
+          title: 'TrackFood',
+          headerShown: true, 
+         
+          headerTintColor: 'black',
+         
+          }} 
+        />
+        <Stack.Screen 
+          name="Notification2" 
+          component={Notification2} 
+          options={{
+          title: 'Notifications',
+          headerShown: true, 
+         
+          headerTintColor: 'black',
+         
+          }} 
+        />
+        
+
       </Stack.Navigator>
     </NavigationContainer>
   );

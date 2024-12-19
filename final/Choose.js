@@ -8,11 +8,11 @@ import {
   ImageBackground,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation
-import NavBar from './NavBar'; // Import the NavBar component
+
 import LinearGradient from 'react-native-linear-gradient'; // For gradient buttons
 import LottieView from 'lottie-react-native'; // Import Lottie
 
-const MenuScreen = () => {
+const Choose = () => {
   const navigation = useNavigation(); // Access navigation object
 
   const dismissKeyboard = () => {
@@ -22,16 +22,7 @@ const MenuScreen = () => {
   return (
     <TouchableWithoutFeedback onPress={dismissKeyboard}>
       <View style={styles.container}>
-        {/* Background Header Section */}
-        <ImageBackground
-          source={require('./assets/background1.png')}
-          style={styles.headerBackground}>
-          <Text style={styles.headerTitle}>Menu</Text>
-        </ImageBackground>
-
-        {/* NavBar Component */}
-        <NavBar />
-
+       
         {/* Centered Content */}
         <View style={styles.centeredContainer}>
           {/* Farmer Dashboard */}
@@ -121,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MenuScreen;
+export default Choose;

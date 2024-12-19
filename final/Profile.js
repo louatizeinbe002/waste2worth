@@ -97,7 +97,7 @@ const ProfileScreen = () => {
           colors={['#82CE2B', '#70BE19']} // Updated gradient colors
           style={styles.logoutButton}>
           <TouchableOpacity onPress={() => navigation.navigate('LogoutConfirmation')}>
-            <Text style={styles.logoutText}>Logout</Text>
+            <Text style={styles.logoutText}>Log out</Text>
           </TouchableOpacity>
         </LinearGradient>
       </ScrollView>

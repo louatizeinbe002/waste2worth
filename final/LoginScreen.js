@@ -38,7 +38,7 @@ const LoginScreen = () => {
       return;
     }
     // Navigate to Dashboard after successful validation
-    navigation.navigate('Dashboard');
+    navigation.navigate('Choose');
   };
 
   return (

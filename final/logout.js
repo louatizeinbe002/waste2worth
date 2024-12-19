@@ -12,7 +12,7 @@ const LogoutConfirmation = ({ navigation }) => {
 
   const handleCancel = () => {
     // Navigate to the Dashboard screen when "No" is clicked
-    navigation.navigate('Dashboard'); // Adjust the screen name if necessary
+    navigation.navigate('Choose'); // Adjust the screen name if necessary
   };
 
   return (
