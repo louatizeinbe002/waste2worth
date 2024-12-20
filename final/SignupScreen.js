@@ -8,6 +8,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   Alert,
+  Linking,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
@@ -19,16 +20,14 @@ const SignupScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [isFarmer, setIsFarmer] = useState(false); // State for 'Farmer' checkbox
-  const [isRestaurant, setIsRestaurant] = useState(false); // State for 'Restaurant/Hotel' checkbox
+  const [isFarmer, setIsFarmer] = useState(false);
+  const [isRestaurant, setIsRestaurant] = useState(false);
   const navigation = useNavigation();
 
-  // Function to dismiss the keyboard when tapping outside input fields
   const dismissKeyboard = () => {
     Keyboard.dismiss();
   };
 
-  // Function to validate inputs and proceed with signup
   const validateAndSignup = () => {
     if (!name) {
       Alert.alert('Validation Error', 'Name is required.');
@@ -53,33 +52,52 @@ const SignupScreen = () => {
       );
       return;
     }
-    // Navigate to Login after successful validation
     navigation.navigate('Login');
   };
 
-  // Function to handle third-party login
-  const handleThirdPartyLogin = (platform) => {
-    Alert.alert('Redirecting', `You will be redirected to ${platform} login page.`);
-    // Logic to integrate third-party authentication goes here
+  const handleThirdPartyLogin = async (platform) => {
+    let url = '';
+    switch (platform) {
+      case 'Google':
+        url = 'https://accounts.google.com/';
+        break;
+      case 'Facebook':
+        url = 'https://www.facebook.com/';
+        break;
+      case 'Twitter':
+        url = 'https://www.twitter.com/';
+        break;
+      default:
+        Alert.alert('Error', 'Unknown platform');
+        return;
+    }
+
+    try {
+      const supported = await Linking.canOpenURL(url);
+      if (supported) {
+        await Linking.openURL(url);
+      } else {
+        Alert.alert('Error', `Unable to open URL: ${url}`);
+      }
+    } catch (error) {
+      Alert.alert('Error', 'An error occurred while trying to open the URL.');
+    }
   };
 
   return (
     <TouchableWithoutFeedback onPress={dismissKeyboard}>
       <View style={styles.container}>
-        {/* Animated Icon */}
         <View style={styles.animationContainer}>
           <LottieView
-            source={require('./assets/wel.json')} // Animated asset for visual appeal
+            source={require('./assets/wel.json')}
             autoPlay
             loop
             style={styles.animatedIcon}
           />
         </View>
 
-        {/* Page Title */}
         <Text style={styles.title}>Create an Account</Text>
 
-        {/* Form Inputs */}
         <View style={styles.formContainer}>
           <Text style={styles.label}>Name</Text>
           <TextInput
@@ -111,7 +129,6 @@ const SignupScreen = () => {
             secureTextEntry
           />
 
-          {/* Farmer / Restaurant / Hotel Selection */}
           <View style={styles.checkboxRow}>
             <BouncyCheckbox
               size={22}
@@ -122,7 +139,7 @@ const SignupScreen = () => {
               iconStyle={{ borderColor: '#72C21B' }}
               onPress={(isChecked) => {
                 setIsFarmer(isChecked);
-                if (isChecked) setIsRestaurant(false); // Unselect other option
+                if (isChecked) setIsRestaurant(false);
               }}
               isChecked={isFarmer}
             />
@@ -136,13 +153,12 @@ const SignupScreen = () => {
               iconStyle={{ borderColor: '#72C21B' }}
               onPress={(isChecked) => {
                 setIsRestaurant(isChecked);
-                if (isChecked) setIsFarmer(false); // Unselect other option
+                if (isChecked) setIsFarmer(false);
               }}
               isChecked={isRestaurant}
             />
           </View>
 
-          {/* Sign Up Button */}
           <TouchableOpacity style={styles.signupButton} onPress={validateAndSignup}>
             <LinearGradient
               colors={['#72C21B', '#81CE2C', '#426816']}
@@ -152,13 +168,11 @@ const SignupScreen = () => {
             </LinearGradient>
           </TouchableOpacity>
 
-          {/* Already have an account link */}
           <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <Text style={styles.link}>Already have an account? Log In</Text>
           </TouchableOpacity>
         </View>
 
-        {/* Third-party Sign Up Options */}
         <Text style={styles.orText}>Or sign up with</Text>
         <View style={styles.socialButtonsContainer}>
           <TouchableOpacity
