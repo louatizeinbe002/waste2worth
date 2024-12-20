@@ -13,6 +13,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import LottieView from 'lottie-react-native';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SignupScreen = () => {
   const [email, setEmail] = useState('');
@@ -54,6 +55,12 @@ const SignupScreen = () => {
     }
     // Navigate to Login after successful validation
     navigation.navigate('Login');
+  };
+
+  // Function to handle third-party login
+  const handleThirdPartyLogin = (platform) => {
+    Alert.alert('Redirecting', `You will be redirected to ${platform} login page.`);
+    // Logic to integrate third-party authentication goes here
   };
 
   return (
@@ -150,6 +157,31 @@ const SignupScreen = () => {
             <Text style={styles.link}>Already have an account? Log In</Text>
           </TouchableOpacity>
         </View>
+
+        {/* Third-party Sign Up Options */}
+        <Text style={styles.orText}>Or sign up with</Text>
+        <View style={styles.socialButtonsContainer}>
+          <TouchableOpacity
+            style={styles.socialButton}
+            onPress={() => handleThirdPartyLogin('Google')}
+          >
+            <Icon name="google" size={24} color="#DB4437" />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.socialButton}
+            onPress={() => handleThirdPartyLogin('Facebook')}
+          >
+            <Icon name="facebook" size={24} color="#4267B2" />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.socialButton}
+            onPress={() => handleThirdPartyLogin('Twitter')}
+          >
+            <Icon name="twitter" size={24} color="#1DA1F2" />
+          </TouchableOpacity>
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );
@@ -226,6 +258,26 @@ const styles = StyleSheet.create({
     textDecorationLine: 'none',
     color: '#426816',
     fontSize: 16,
+  },
+  orText: {
+    marginTop: 30,
+    fontSize: 16,
+    color: '#426816',
+    fontWeight: 'bold',
+  },
+  socialButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 15,
+    width: '60%',
+  },
+  socialButton: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5F5F5',
   },
 });
 
