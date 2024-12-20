@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   link: {
-    marginTop: 15,
+    marginTop: 13,
     fontSize: 14,
     color: '#426816',
     textDecorationLine: 'underline',
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
   socialButtonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginTop: 15,
+    marginTop: 10,
     width: '60%',
   },
   socialButton: {

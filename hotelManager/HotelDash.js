@@ -55,7 +55,7 @@ const HotelDash = () => {
         {/* Navigate to Shelf.js */}
         
                 <View style={styles.section}>
-                  <Text style={styles.sectionTitle}>New Fertilizers Available</Text>
+                  <Text style={styles.sectionTitle}>Food waste</Text>
                   <View style={styles.cardRow}>
                     <View style={styles.card}>
                       <Image
